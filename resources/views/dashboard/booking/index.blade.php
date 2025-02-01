@@ -95,7 +95,7 @@
                                 <span class="badge bg-info">
                                     @php
                                         $seatId = $booking->seatid;
-                                        $seatCode = Seat::where('id', $seatId)->value('codeseat');
+                                        $seatCode = \App\Models\Seat::where('id', $seatId)->value('codeseat');
                                     @endphp
                                     {{ $seatCode }}
                                 </span>
