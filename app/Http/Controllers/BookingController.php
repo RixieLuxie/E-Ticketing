@@ -45,7 +45,7 @@ class BookingController extends Controller
      */
     public function preview (Request $request, $booking_id)
     {
-       $bookings = Booking::with(['payment', 'schedule'])->find($booking_id);
+        $bookings = Booking::with(['payment', 'schedule'])->find($booking_id);
         $payments = Payment::all();
 
         return view('dashboard.booking.preview', compact('payments', 'bookings'));
@@ -55,14 +55,12 @@ class BookingController extends Controller
     {
         $query = Booking::where('userid', auth()->user()->id);
     
-        // Filter berdasarkan status schedule
         if ($request->has('status') && !empty($request->status)) {
             $query->whereHas('schedule', function ($query) use ($request) {
             $query->where('status', $request->status);
             });
         }
     
-        // Filter berdasarkan status pembayaran
         if ($request->has('statuspay') && !empty($request->statuspay)) {
             $query->where('statuspay', $request->statuspay);
         }

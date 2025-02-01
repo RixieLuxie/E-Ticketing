@@ -19,10 +19,9 @@ class OrderController extends Controller
 
         $schedules->each(function ($schedule) {
             $excludedSeatIds = $schedule->bookings
-                ->where('statuspay', '!=', 'rejected')
+                ->where('statuspay', '!=', 'Rejected')
                 ->pluck('seatid')
-                ->filter()
-                ->unique();
+                ->toArray();
 
             $schedule->availableSeats = $schedule->plane->seats
                 ->whereNotIn('id', $excludedSeatIds)

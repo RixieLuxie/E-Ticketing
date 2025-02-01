@@ -21,7 +21,7 @@ class HomeController extends Controller
         $scheduleCount = Schedule::whereIn('Status', ['pending', 'landing', 'departing', 'arriving'])->count();
         $schedules = Schedule::with(['airline', 'plane'])->paginate(10);
         $today = Carbon::today();
-        $schedules = \App\Models\Schedule::whereDate('departuredate', $today)->paginate(10);
+        $schedules = Schedule::whereDate('departuredate', $today)->paginate(10);
 
         if (auth()->user()->role == 'user') {
             $bookings = Booking::where('userid', auth()->user()->id)->paginate(10);
