@@ -137,10 +137,16 @@
                             </div>
                         </div>
                         <hr class="my-2 bg-dark">
+                        @if ($schedule->availableSeats == 0)
+                            <div class="row">
+                                <h6 class="text-center text-light bg-danger p-2 rounded fw-bold">Sold Out</h6>
+                            </div>
+                        @else
                         <div class="row">
                             <a href="{{ route('order.create.front', ['schedule_id' => $schedule->id]) }}"
                                 class="btn btn-success">Book Now</a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

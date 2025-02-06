@@ -43,7 +43,7 @@ class BookingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function preview (Request $request, $booking_id)
+    public function preview(Request $request, $booking_id)
     {
         $bookings = Booking::with(['payment', 'schedule'])->find($booking_id);
         $payments = Payment::all();
@@ -54,23 +54,24 @@ class BookingController extends Controller
     public function filter(Request $request)
     {
         $query = Booking::where('userid', auth()->user()->id);
-    
+
         if ($request->has('status') && !empty($request->status)) {
             $query->whereHas('schedule', function ($query) use ($request) {
-            $query->where('status', $request->status);
+                $query->where('status', $request->status);
             });
         }
-    
+
         if ($request->has('statuspay') && !empty($request->statuspay)) {
             $query->where('statuspay', $request->statuspay);
         }
-    
-        $bookings = $query->paginate(3);
-    
+
+        $bookings = $query->paginate(3)->appends($request->query());
+
         return view('dashboard.booking.index', compact('bookings'));
     }
-    
-    
+
+
+
     /**
      * Store a newly created resource in storage.
      */

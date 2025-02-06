@@ -41,6 +41,7 @@ Route::get('/order/create/{schedule_id}', [OrderController::class, 'create'])->n
 Route::get('/order/create', [OrderController::class, 'create'])->name('order.create')->middleware(['auth', 'User']);
 Route::get('/order/filter', [OrderController::class, 'filter'])->name('order.filter')->middleware(['auth', 'User']);
 
+
 // Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

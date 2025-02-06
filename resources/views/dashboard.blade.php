@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Jadwal</p>
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Totals Schedule</p>
                                         <h5 class="font-weight-bolder">
                                             {{ $scheduleCount }}
                                         </h5>
